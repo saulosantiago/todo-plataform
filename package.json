@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/saulosantiago/todo-plataform/issues"
   },
-  "homepage": "https://github.com/saulosantiago/todo-plataform#readme"
+  "homepage": "https://github.com/saulosantiago/todo-plataform#readme",
+  "devDependencies": {
+    "standard": "^14.3.4"
+  }
 }

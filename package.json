@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --silent --colors --passWithNoTests --noStackTrace",
-    "test:unit": "jest --watch --silent --colors",
-    "test:staged": "jest --passWithNoTests --findRelatedTests --silent --noStackTrace",
+    "test:dev": "jest --watch --silent --colors",
+    "test:unit": "npm run test -- -c jest-unit-config.js",
+    "test:integration": "npm run test -- -c jest-integration-config.js",
+    "test:staged": "npm run test -- --findRelatedTests",
     "test:ci": "jest --coverage --silent --verbose"
   },
   "standard" : {

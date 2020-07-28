@@ -4,7 +4,7 @@ const InvalidParamError = require('../helpers/invalid-param-error')
 const UnauthorizedError = require('../helpers/unauthorized-error')
 const ServerError = require('../helpers/server-error')
 
-const makeSut = (authUseCase = makeAuthUsecase) => {
+const makeSut = (authUseCase = makeAuthUsecase, emailValidator = makeEmailValidator) => {
   const authUseCaseSpy = authUseCase()
   const emailValidatorSpy = makeEmailValidator()
   authUseCaseSpy.accessToken = 'valid_token'
@@ -17,6 +17,16 @@ const makeEmailValidator = () => {
   class EmailValidatorSpy {
     isValid (email) {
       return this.isEmailValid
+    }
+  }
+
+  return new EmailValidatorSpy()
+}
+
+const makeEmailValidatorWithError = () => {
+  class EmailValidatorSpy {
+    isValid () {
+      throw new Error()
     }
   }
 
@@ -192,6 +202,19 @@ describe('Login Router', () => {
   test('Should return 500 if no EmailValidator has no isValid method', async () => {
     const authUseCaseSpy = makeAuthUsecase()
     const sut = new LoginRouter(authUseCaseSpy, {})
+    const httpRequest = {
+      body: {
+        email: 'any_email@mail.com',
+        password: 'any_pass'
+      }
+    }
+    const httpResponse = await sut.route(httpRequest)
+    expect(httpResponse.statusCode).toBe(500)
+    expect(httpResponse.body).toEqual(new ServerError())
+  })
+
+  test('Should return 500 if EmailValidator throws', async () => {
+    const { sut } = makeSut(makeAuthUseCaseWithError, makeEmailValidatorWithError)
     const httpRequest = {
       body: {
         email: 'any_email@mail.com',

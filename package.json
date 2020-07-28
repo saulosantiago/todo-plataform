@@ -4,7 +4,8 @@
   "description": "todo-plataform",
   "main": "index.js",
   "scripts": {
-    "test": "jest --watch --silent --colors",
+    "test": "jest --silent --colors --passWithNoTests --noStackTrace",
+    "test:unit": "jest --watch --silent --colors",
     "test:staged": "jest --passWithNoTests --findRelatedTests --silent --noStackTrace",
     "test:ci": "jest --coverage --silent --verbose"
   },

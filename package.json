@@ -1,7 +1,7 @@
 {
-  "name": "todo-plataform",
+  "name": "todo-platform",
   "version": "1.0.0",
-  "description": "todo-plataform",
+  "description": "todo-platform",
   "main": "index.js",
   "scripts": {
     "test": "jest --silent --colors --passWithNoTests --noStackTrace",

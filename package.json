@@ -11,8 +11,10 @@
     "test:staged": "npm run test -- --findRelatedTests",
     "test:ci": "jest --coverage --silent --verbose"
   },
-  "standard" : {
-    "env": ["jest"]
+  "standard": {
+    "env": [
+      "jest"
+    ]
   },
   "repository": {
     "type": "git",
@@ -29,5 +31,8 @@
     "jest": "^26.1.0",
     "lint-staged": "^10.2.11",
     "standard": "^14.3.4"
+  },
+  "dependencies": {
+    "validator": "^13.1.1"
   }
 }

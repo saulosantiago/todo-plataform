@@ -52,12 +52,12 @@ describe('Auth UseCase', () => {
     const { sut, loadUserByEmailRepositorySpy } = makeSut()
     loadUserByEmailRepositorySpy.user = null
     const accessToken = await sut.auth('invalid_email@mail.com', 'any_password')
-    await expect(accessToken).toBeNull()
+    expect(accessToken).toBeNull()
   })
 
   test('should return null if an invalid email is provided', async () => {
     const { sut } = makeSut()
     const accessToken = await sut.auth('valid_email@mail.com', 'invalid_password')
-    await expect(accessToken).toBeNull()
+    expect(accessToken).toBeNull()
   })
 })
